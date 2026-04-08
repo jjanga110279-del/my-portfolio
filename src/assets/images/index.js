@@ -1,5 +1,6 @@
 import avatar from './avatar.jpg';
 import projectA from './project-a.png';
+import projectB from './project-b.png';
 import projectDmart from './project-dmart.png';
 import projectC from './project-c.jpg';
 import projectD from './project-d.png';
@@ -23,6 +24,7 @@ import card7 from './card7.png';
 export {
   avatar,
   projectA,
+  projectB,
   projectDmart,
   projectC,
   projectD,

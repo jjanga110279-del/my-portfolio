@@ -1,7 +1,7 @@
 import React from "react";
 import "./index.css";
 
-import { avatar, projectA, projectDmart, projectC, projectD, life1, life2, life3, life4, life5, life6, life7, life8, card, card1, card2, card3, card4, card5, card6, card7 } from "./assets/images";
+import { avatar, projectA, projectB, projectDmart, projectC, projectD, life1, life2, life3, life4, life5, life6, life7, life8, card, card1, card2, card3, card4, card5, card6, card7 } from "./assets/images";
 
 function App() {
   const [scrolled, setScrolled] = React.useState(false);
@@ -151,7 +151,7 @@ function App() {
 
             <a href="https://pepi-a.vercel.app/" target="_blank" rel="noopener noreferrer" className="project-card">
               <div className="project-image">
-                <img src={projectDmart} alt="DMart" />
+                <img src={projectB} alt="Project-B" />
               </div>
               <div className="project-info">
                 <span className="project-category">React,Python 쇼핑몰 디자인</span>

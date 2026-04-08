@@ -16,20 +16,27 @@ function App() {
   const sendEmail = (e) => {
     e.preventDefault();
 
-    // 이 부분의 ID들은 나중에 EmailJS 대시보드에서 확인 후 교체해야 합니다.
-    emailjs.sendForm(
-      "YOUR_SERVICE_ID",   // 서비스 ID
-      "YOUR_TEMPLATE_ID",  // 템플릿 ID
-      form.current,
-      "YOUR_PUBLIC_KEY"    // 공개 키
-    )
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID?.trim();
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID?.trim();
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY?.trim();
+
+    // 환경 변수 로드 확인
+    if (!serviceId || !templateId || !publicKey) {
+      alert("환경 변수(ID/Key)를 불러오지 못했습니다. .env 파일의 변수명이 VITE_로 시작하는지 확인해 주세요.");
+      return;
+    }
+
+    // EmailJS 초기화
+    emailjs.init(publicKey);
+
+    emailjs.sendForm(serviceId, templateId, form.current, publicKey)
       .then((result) => {
-          console.log(result.text);
+          console.log("SUCCESS:", result.text);
           alert("이메일이 성공적으로 전송되었습니다!");
-          e.target.reset(); // 폼 초기화
+          e.target.reset();
       }, (error) => {
-          console.log(error.text);
-          alert("전송 중 오류가 발생했습니다. 나중에 다시 시도해주세요.");
+          console.error("FAILED 상세 오류:", error);
+          alert(`전송 오류: ${error.text || "Public Key가 유효하지 않습니다. .env의 값을 다시 한 번 확인해 주세요."}`);
       });
   };
 
@@ -176,7 +183,7 @@ function App() {
                 <img src={projectB} alt="Project-B" />
               </div>
               <div className="project-info">
-                <span className="project-category">React,Python 쇼핑몰 디자인</span>
+                <span className="project-category">React,Python 쇼핑몰(바이브코딩) 디자인</span>
                 <h3 className="project-title">Project-B</h3>
               </div>
             </a>

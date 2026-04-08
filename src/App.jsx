@@ -149,12 +149,11 @@ function App() {
               </div>
             </a>
 
-            <a href="#" onClick={handleLinkClick} className="project-card">
+            <a href="https://pepi-a.vercel.app/" target="_blank" rel="noopener noreferrer" className="project-card">
               <div className="project-image">
                 <img src={projectDmart} alt="DMart" />
               </div>
-              <div c
-              lassName="project-info">
+              <div className="project-info">
                 <span className="project-category">React,Python 쇼핑몰 디자인</span>
                 <h3 className="project-title">Project-B</h3>
               </div>

@@ -1,14 +1,36 @@
-import React from "react";
+import React, { useRef } from "react";
 import "./index.css";
+import emailjs from "@emailjs/browser";
 
 import { avatar, projectA, projectB, projectDmart, projectC, projectD, life1, life2, life3, life4, life5, life6, life7, life8, card, card1, card2, card3, card4, card5, card6, card7 } from "./assets/images";
 
 function App() {
   const [scrolled, setScrolled] = React.useState(false);
+  const form = useRef();
 
   const handleLinkClick = (e) => {
     e.preventDefault();
     alert("현재 지원하지 않는 링크입니다.");
+  };
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    // 이 부분의 ID들은 나중에 EmailJS 대시보드에서 확인 후 교체해야 합니다.
+    emailjs.sendForm(
+      "YOUR_SERVICE_ID",   // 서비스 ID
+      "YOUR_TEMPLATE_ID",  // 템플릿 ID
+      form.current,
+      "YOUR_PUBLIC_KEY"    // 공개 키
+    )
+      .then((result) => {
+          console.log(result.text);
+          alert("이메일이 성공적으로 전송되었습니다!");
+          e.target.reset(); // 폼 초기화
+      }, (error) => {
+          console.log(error.text);
+          alert("전송 중 오류가 발생했습니다. 나중에 다시 시도해주세요.");
+      });
   };
 
   React.useEffect(() => {
@@ -291,6 +313,16 @@ function App() {
                   About
                 </a>
               </div>
+            </div>
+
+            <div className="footer-col contact-col">
+              <h3 className="footer-col-title">Quick Message</h3>
+              <form ref={form} onSubmit={sendEmail} className="contact-form">
+                <input type="text" name="user_name" placeholder="Name" required className="contact-input" />
+                <input type="email" name="user_email" placeholder="Email" required className="contact-input" />
+                <textarea name="message" placeholder="Message" required className="contact-textarea" />
+                <button type="submit" className="contact-submit-btn">Send Message</button>
+              </form>
             </div>
           </div>
 

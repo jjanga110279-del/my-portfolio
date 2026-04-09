@@ -298,20 +298,6 @@ function App() {
         <div className="footer-container">
           <div className="footer-links-grid">
             <div className="footer-col">
-              <h3 className="footer-col-title">Get in Touch</h3>
-              <div className="footer-link-list">
-                <a href="#" onClick={handleLinkClick} className="footer-link">
-                  LinkedIn
-                </a>
-                <a href="#" onClick={handleLinkClick} className="footer-link">
-                  Behance
-                </a>
-                <a href="#" onClick={handleLinkClick} className="footer-link">
-                  Instagram
-                </a>
-              </div>
-            </div>
-            <div className="footer-col">
               <h3 className="footer-col-title">Explore</h3>
               <div className="footer-link-list">
                 <a href="#home" className="footer-link">

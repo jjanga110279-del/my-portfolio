@@ -691,12 +691,11 @@ body {
 
 .footer-links-grid {
   display: flex;
-  justify-content: space-between;
-  gap: 80px;
+  justify-content: flex-start;
+  gap: 120px;
 }
 
 .footer-col {
-  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 32px;

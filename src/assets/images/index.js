@@ -1,4 +1,4 @@
-import avatar from './avatar.jpg';
+import avatar from './avatar-2.png';
 import projectA from './project-a.png';
 import projectB from './project-b.png';
 import projectDmart from './project-dmart.png';

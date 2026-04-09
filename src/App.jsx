@@ -57,20 +57,24 @@ function App() {
       {/* Navigation */}
       <nav className="nav-container">
         <div className="nav-content">
-          <a href="#home" className={`nav-avatar ${scrolled ? "visible" : ""}`}>
-            <img src={avatar} alt="Avatar" className="avatar-img" />
-            <span>황정화</span>
-          </a>
-          <div className="nav-links">
-            <a href="#work" className="nav-link">
-              Projects
+          <div className="nav-left">
+            <a href="#home" className={`nav-avatar ${scrolled ? "visible" : ""}`}>
+              <img src={avatar} alt="Avatar" className="avatar-img" />
+              <span>황정화</span>
             </a>
-            <a href="#about" className="nav-link">
-              About
-            </a>
-            <a href="#" onClick={handleLinkClick} className="nav-resume-btn">
-              GitHub
-            </a>
+          </div>
+          <div className={`nav-links-wrapper ${scrolled ? "is-scrolled" : ""}`}>
+            <div className="nav-links">
+              <a href="#work" className="nav-link">
+                Projects
+              </a>
+              <a href="#about" className="nav-link">
+                About
+              </a>
+              <a href="https://github.com/jjanga110279-del" target="_blank" rel="noopener noreferrer" className="nav-resume-btn">
+                GitHub
+              </a>
+            </div>
           </div>
         </div>
       </nav>

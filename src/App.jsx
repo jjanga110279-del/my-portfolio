@@ -1,8 +1,71 @@
 import React, { useRef } from "react";
 import "./index.css";
 import emailjs from "@emailjs/browser";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { SplitText } from "gsap/SplitText";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(SplitText, ScrollTrigger, useGSAP);
 
 import { avatar, projectA, projectB, projectDmart, projectC, projectD, life1, life2, life3, life4, life5, life6, life7, life8, card, card1, card2, card3, card4, card5, card6, card7 } from "./assets/images";
+
+const AnimatedHeroTitle = () => {
+  const containerRef = useRef(null);
+
+  useGSAP(
+    () => {
+      // 텍스트 분할 애니메이션
+      const mm = gsap.matchMedia();
+      let split;
+
+      const createAnimation = () => {
+        if (split) split.revert();
+        split = new SplitText(containerRef.current.querySelectorAll("span"), { type: "chars" });
+
+        mm.add(
+          {
+            isDesktop: "(min-width: 768px)",
+            isMobile: "(max-width: 767px)",
+          },
+          (context) => {
+            const { isMobile } = context.conditions;
+
+            gsap.from(split.chars, {
+              y: isMobile ? 30 : 50,
+              opacity: 0,
+              stagger: 0.03,
+              ease: "power3.out",
+              duration: 1,
+              repeat: -1,
+              repeatDelay: 1,
+            });
+          },
+        );
+      };
+
+      createAnimation();
+
+      window.addEventListener("resize", createAnimation);
+
+      return () => {
+        window.removeEventListener("resize", createAnimation);
+        if (split) split.revert();
+        mm.revert();
+      };
+    },
+    { scope: containerRef },
+  );
+
+  return (
+    <div ref={containerRef} style={{ position: "relative" }}>
+      <h1 className="hero-title">
+        <span>믿음은 촘촘하게</span>
+        <span>내일은 당당하게</span>
+      </h1>
+    </div>
+  );
+};
 
 function App() {
   const [scrolled, setScrolled] = React.useState(false);
@@ -29,15 +92,17 @@ function App() {
     // EmailJS 초기화
     emailjs.init(publicKey);
 
-    emailjs.sendForm(serviceId, templateId, form.current, publicKey)
-      .then((result) => {
-          console.log("SUCCESS:", result.text);
-          alert("이메일이 성공적으로 전송되었습니다!");
-          e.target.reset();
-      }, (error) => {
-          console.error("FAILED 상세 오류:", error);
-          alert(`전송 오류: ${error.text || "Public Key가 유효하지 않습니다. .env의 값을 다시 한 번 확인해 주세요."}`);
-      });
+    emailjs.sendForm(serviceId, templateId, form.current, publicKey).then(
+      (result) => {
+        console.log("SUCCESS:", result.text);
+        alert("이메일이 성공적으로 전송되었습니다!");
+        e.target.reset();
+      },
+      (error) => {
+        console.error("FAILED 상세 오류:", error);
+        alert(`전송 오류: ${error.text || "Public Key가 유효하지 않습니다. .env의 값을 다시 한 번 확인해 주세요."}`);
+      },
+    );
   };
 
   React.useEffect(() => {
@@ -83,18 +148,10 @@ function App() {
         {/* Hero Section */}
         <section id="home" className="hero-section">
           <div className="hero-content">
-            <div className={`hero-avatar-wrapper ${scrolled ? "hidden" : ""}`}>
-              <img src={avatar} alt="Avatar" className="hero-large-avatar" />
-            </div>
-
             <div className="hero-text-container">
-              <span className="hero-subtitle"></span>
               <div className="hero-text-row">
                 <div className="hero-left">
-                  <h1 className="hero-title">
-                    <span>믿음은 촘촘하게</span>
-                    <span>내일은 당당하게</span>
-                  </h1>
+                  <AnimatedHeroTitle />
                 </div>
                 <div className="hero-desc">
                   <div className="hero-profile">
@@ -103,7 +160,7 @@ function App() {
                     <div className="hero-motto">
                       <span className="hero-motto-ko">시간의 매듭으로 신뢰를 짓고, 주인의식의 색으로 내일을 디자인합니다.</span>
                       <span className="hero-motto-en">
-                        We build trust through the knots of time, 
+                        We build trust through the knots of time,
                         <br />
                         and design tomorrow with the colors of ownership.
                       </span>
@@ -149,8 +206,11 @@ function App() {
                 <h3 className="info-title">학력 및 교육사항</h3>
                 <div className="info-row">
                   <div className="info-date">25.10 - 26.04</div>
-                  <span>생성형 AI를 활용한 반응형 웹콘텐츠(영상제작&코딩)<br/>
-                       개발기획자 양성과정</span>
+                  <span>
+                    생성형 AI를 활용한 반응형 웹콘텐츠(영상제작&코딩)
+                    <br />
+                    개발기획자 양성과정
+                  </span>
                 </div>
                 <div className="info-row" style={{ marginTop: "10px" }}>
                   <div className="info-date">96.03 - 98.2</div>
@@ -197,7 +257,6 @@ function App() {
                 <img src={projectC} alt="Project-C" />
               </div>
               <div className="project-info">
-
                 <span className="project-category">Ai 기반 크록스영상 제작</span>
                 <h3 className="project-title">Project-C</h3>
               </div>
@@ -318,7 +377,9 @@ function App() {
                 <input type="text" name="user_name" placeholder="Name" required className="contact-input" />
                 <input type="email" name="user_email" placeholder="Email" required className="contact-input" />
                 <textarea name="message" placeholder="Message" required className="contact-textarea" />
-                <button type="submit" className="contact-submit-btn">Send Message</button>
+                <button type="submit" className="contact-submit-btn">
+                  Send Message
+                </button>
               </form>
             </div>
           </div>

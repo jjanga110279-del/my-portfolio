@@ -8,13 +8,13 @@
   --color-zinc-600: #52525b;
   --color-concrete: #f3f3f3;
   --color-iron: #e7e7e9;
-  --color-terracotta: #B47B68;
-  --color-muted-green: #8A9A8C;
-  --color-dusty-rose: #C3A8A2;
-  
-  --font-inter: 'Inter', sans-serif;
-  --font-bricolage: 'Outfit', sans-serif;
-  --font-pretendard: 'Pretendard Variable', sans-serif;
+  --color-terracotta: #b47b68;
+  --color-muted-green: #8a9a8c;
+  --color-dusty-rose: #c3a8a2;
+
+  --font-inter: "Inter", sans-serif;
+  --font-bricolage: "Outfit", sans-serif;
+  --font-pretendard: "Pretendard Variable", sans-serif;
 }
 
 html {
@@ -47,7 +47,7 @@ body {
   left: 0;
   width: 100%;
   height: 80px;
-  background-color: rgba(255, 255, 255, 0.95);
+  background-color: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(10px);
   z-index: 2000;
   display: flex;
@@ -94,8 +94,8 @@ body {
   height: 54px; /* 세로를 줄여서 가로형 비율로 변경 */
   border-radius: 10px;
   object-fit: cover;
-  object-position: center 15%; /* 상반신 위주로 보이게 조정 */
-  border: 1.5px solid rgba(0,0,0,0.06);
+  object-position: center top; /* 상반신 위주로 보이게 조정 */
+  border: 1.5px solid rgba(0, 0, 0, 0.06);
 }
 
 .nav-links-wrapper {
@@ -153,8 +153,6 @@ body {
 /* Hero */
 .hero-section {
   padding: 100px 64px 64px;
-  background-color: var(--color-desert-storm);
-  border-bottom-left-radius: 120px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -163,14 +161,16 @@ body {
 }
 
 .hero-section::before {
-  content: '';
+  content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: var(--color-black-white);
-  border-bottom-left-radius: 120px;
+  top: 100px;
+  width: 100%;
+  max-width: 50vw;
+  height: 100%;
+  background-image: url("./assets/images/avatar-2.png");
+  background-repeat: no-repeat;
+  background-position: right top;
+  background-size: auto calc(100% - 100px);
   z-index: 0;
 }
 
@@ -178,52 +178,20 @@ body {
   position: relative;
   z-index: 1;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1400px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-}
-
-.hero-avatar-wrapper {
-  width: 100%;
-  max-width: 1200px;
-  height: 50vh; 
-  margin: 0 auto 40px; 
-  position: relative;
-  z-index: 10;
-  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), 
-              opacity 0.4s ease-out, 
-              border-radius 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-  transform-origin: center top; 
-  will-change: transform, opacity;
-}
-
-.hero-large-avatar {
-  width: 100%;
-  height: 100%;
-  border-radius: 40px; /* 부드러운 모서리 복구 */
-  object-fit: cover;
-  object-position: center 10%;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.08); /* 은은한 그림자 추가 */
-  backface-visibility: hidden;
-}
-
-.hero-avatar-wrapper.hidden {
-  opacity: 0;
-  transform: scale(0.045) translate(-10000px, -2400px); 
-  pointer-events: none;
-}
-
-.hero-avatar-wrapper.hidden .hero-large-avatar {
-  border-radius: 50%; /* Smoothly morph into circle during the move */
+  justify-content: center;
+  min-height: calc(100vh - 100px);
 }
 
 .hero-text-container {
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
 }
 
 .hero-subtitle {
@@ -235,10 +203,11 @@ body {
 
 .hero-text-row {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: flex-start; /* Align Title and Description at the top line */
-  width: 100%;
-  gap: 100px; /* Increased from 40px to widen the center space */
+  align-items: flex-start;
+  width: 52vw;
+  gap: 48px;
 }
 
 .hero-left {
@@ -252,7 +221,7 @@ body {
   font-size: 74px; /* Slightly increased for Outfit's proportions */
   font-weight: 800; /* Extra Bold */
   color: var(--color-firefly);
-  letter-spacing: -2.0px; /* Still tight, but breathable compared to -3.0 */
+  letter-spacing: -2px; /* Still tight, but breathable compared to -3.0 */
   display: flex;
   flex-direction: column;
   gap: 8px; /* Slightly reduced gap */
@@ -264,7 +233,7 @@ body {
 }
 
 .hero-title span:last-child {
-  margin-left: 210px; /* Increased to start after '촘촘하게' for a stepped effect */
+  margin-left: 80px; /* Increased to start after '촘촘하게' for a stepped effect */
 }
 
 .hero-desc {
@@ -410,7 +379,7 @@ body {
 }
 
 .work-section::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -422,7 +391,9 @@ body {
   z-index: 0;
 }
 
-.work-header, .projects-grid, .view-more-btn {
+.work-header,
+.projects-grid,
+.view-more-btn {
   position: relative;
   z-index: 1;
 }
@@ -571,11 +542,12 @@ body {
   border-radius: 8px;
   transform: rotate(4deg);
   z-index: 2;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
 }
 
-.c-2 .creationndex: 2;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+.c-2 .creation-img {
+  z-index: 2;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
 }
 
 .c-2 .creation-img,
@@ -584,15 +556,33 @@ body {
   transform: rotate(0deg);
 }
 
-.c { background-color: var(--color-firefly); }
-.c-1 { background-color: var(--color-pearl-bush); }
-.c-2 { background-color: var(--color-ferra); }
-.c-3 { background-color: var(--color-indian-khaki); }
-.c-4 { background-color: var(--color-pearl-bush); }
-.c-5 { background-color: var(--color-zinc-600); }
-.c-6 { background-color: var(--color-muted-green); }
-.c-7 { background-color: var(--color-pearl-bush); }
-.c-8 { background-color: var(--color-pearl-bush); }
+.c {
+  background-color: var(--color-firefly);
+}
+.c-1 {
+  background-color: var(--color-pearl-bush);
+}
+.c-2 {
+  background-color: var(--color-ferra);
+}
+.c-3 {
+  background-color: var(--color-indian-khaki);
+}
+.c-4 {
+  background-color: var(--color-pearl-bush);
+}
+.c-5 {
+  background-color: var(--color-zinc-600);
+}
+.c-6 {
+  background-color: var(--color-muted-green);
+}
+.c-7 {
+  background-color: var(--color-pearl-bush);
+}
+.c-8 {
+  background-color: var(--color-pearl-bush);
+}
 
 /* Life */
 .life-section {
@@ -605,7 +595,7 @@ body {
 }
 
 .life-section::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -626,7 +616,9 @@ body {
   text-align: center;
 }
 
-.life-title span { color: var(--color-ferra); }
+.life-title span {
+  color: var(--color-ferra);
+}
 
 .gallery-container {
   position: relative;
@@ -670,8 +662,12 @@ body {
   object-fit: cover;
 }
 
-.g-odd { transform: rotate(-5deg); }
-.g-even { transform: rotate(5deg); }
+.g-odd {
+  transform: rotate(-5deg);
+}
+.g-even {
+  transform: rotate(5deg);
+}
 
 /* Footer */
 .footer-section {
@@ -735,7 +731,8 @@ body {
   margin-top: -10px;
 }
 
-.contact-input, .contact-textarea {
+.contact-input,
+.contact-textarea {
   width: 100%;
   padding: 12px 16px;
   background: rgba(255, 255, 255, 0.05);
@@ -747,11 +744,13 @@ body {
   transition: all 0.3s ease;
 }
 
-.contact-input::placeholder, .contact-textarea::placeholder {
+.contact-input::placeholder,
+.contact-textarea::placeholder {
   color: rgba(233, 222, 220, 0.4);
 }
 
-.contact-input:focus, .contact-textarea:focus {
+.contact-input:focus,
+.contact-textarea:focus {
   outline: none;
   border-color: #fff;
   background: rgba(255, 255, 255, 0.1);
@@ -776,7 +775,7 @@ body {
 .contact-submit-btn:hover {
   background: #ffffff;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .footer-bottom {
@@ -794,37 +793,45 @@ body {
 }
 
 /* Responsive Design */
+
+/* ── 1200px: 좌우 여백 축소 ── */
 @media (max-width: 1200px) {
-  .nav-container, .hero-section, .about-section, .work-section, .creations-section, .life-section, .footer-section {
+  .nav-container,
+  .hero-section,
+  .about-section,
+  .work-section,
+  .creations-section,
+  .life-section,
+  .footer-section {
     padding-left: 40px;
     padding-right: 40px;
   }
-  
-  .hero-avatar-wrapper {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 16/10;
-  }
 }
 
+/* ── 1024px: 타이틀 축소, hero 텍스트 폭 조정 ── */
 @media (max-width: 1024px) {
   .hero-title {
-    font-size: 60px;
+    font-size: 58px;
   }
-  
+
   .hero-title span:last-child {
-    margin-left: 100px;
+    margin-left: 60px;
   }
-  
+
+  .hero-text-row {
+    width: 58vw;
+    gap: 36px;
+  }
+
   .about-info-grid {
     gap: 40px;
   }
-  
+
   .creations-container {
     flex-direction: column;
     gap: 40px;
   }
-  
+
   .creations-title {
     position: static;
     font-size: 60px;
@@ -832,72 +839,115 @@ body {
   }
 }
 
+/* ── 900px: iPad 가로 / 소형 태블릿 ── */
+@media (max-width: 900px) {
+  .hero-title {
+    font-size: 50px;
+  }
+
+  .hero-title span:last-child {
+    margin-left: 44px;
+  }
+
+  .hero-text-row {
+    width: 62vw;
+    gap: 28px;
+  }
+
+  .hero-section::before {
+    background-size: auto 95%;
+  }
+}
+
+/* ── 768px: iPad 세로 ── */
 @media (max-width: 768px) {
+  /* Nav */
   .nav-container {
     padding: 0 24px;
     height: 64px;
   }
-  
+
   .nav-links {
-    gap: 16px;
+    gap: 20px;
   }
-  
+
+  /* Hero: 좌우 레이아웃 유지 (스택하지 않음) */
   .hero-section {
-    padding: 100px 24px 60px;
+    padding: 90px 28px 56px;
     border-bottom-left-radius: 60px;
   }
-  
+
   .hero-section::before {
     border-bottom-left-radius: 60px;
+    background-size: auto 90%;
+    background-position: right bottom;
   }
-  
+
   .hero-text-row {
-    flex-direction: column;
-    gap: 32px;
+    width: 64vw;
+    gap: 20px;
   }
-  
+
   .hero-title {
-    font-size: 48px;
+    font-size: 44px;
     letter-spacing: -1px;
   }
-  
+
   .hero-title span:last-child {
-    margin-left: 0;
+    margin-left: 28px;
   }
-  
-  .hero-avatar-wrapper {
-    margin-top: 20px;
+
+  .hero-role {
+    font-size: 14px;
   }
-  
-  .about-section, .work-section, .life-section, .footer-section {
+
+  .hero-name {
+    font-size: 20px;
+  }
+
+  .hero-motto-ko,
+  .hero-motto .hero-motto-en {
+    font-size: 13px;
+  }
+
+  /* 나머지 섹션 */
+  .about-section,
+  .work-section,
+  .life-section,
+  .footer-section {
     padding: 60px 24px;
   }
-  
-  .about-bg, .work-section::before, .life-section::before {
+
+  .about-bg,
+  .work-section::before,
+  .life-section::before {
     border-radius: 60px !important;
   }
-  
-  .about-title, .work-header h2, .life-title, .creations-title {
+
+  .about-title,
+  .work-header h2,
+  .life-title,
+  .creations-title {
     font-size: 48px;
     margin-bottom: 40px;
     line-height: 1.2;
   }
-  
+
   .about-info-grid {
     flex-direction: column;
     gap: 40px;
   }
-  
+
   .projects-grid {
     grid-template-columns: 1fr;
     gap: 32px;
   }
-  
+
   .footer-links-grid {
     flex-direction: column;
     gap: 40px;
   }
-  
+
   .footer-bottom {
     flex-direction: column;
     gap: 16px;
@@ -905,61 +955,72 @@ body {
   }
 }
 
-@media (max-width: 480px) {
+/* ── 560px: 소형 폰 가로 / 큰 폰 ── */
+@media (max-width: 560px) {
   .hero-title {
-    font-size: 38px;
+    font-size: 36px;
   }
-  
-  .hero-name {
-    font-size: 20px;
-  }
-  
-  .project-title {
-    font-size: 24px;
-  }
-  
-  .creation-card {
-    height: 400px;
-  }
-}
 
-  .creation-card {
-    height: 400px;
+  .hero-title span:last-child {
+    margin-left: 16px;
   }
-}
- }
-  
-  .footer-links-grid {
-    flex-direction: column;
-    gap: 40px;
-  }
-  
-  .footer-bottom {
-    flex-direction: column;
+
+  .hero-text-row {
+    width: 68vw;
     gap: 16px;
-    text-align: center;
+  }
+
+  .hero-section::before {
+    background-size: auto 80%;
+    background-position: right bottom;
   }
 }
 
+/* ── 480px: 일반 스마트폰 ── */
 @media (max-width: 480px) {
+  /* Hero: 세로 스택으로 전환 */
+  .hero-section {
+    padding: 88px 20px 280px; /* 하단 패딩으로 배경 이미지 공간 확보 */
+    border-bottom-left-radius: 40px;
+    min-height: auto;
+  }
+
+  .hero-section::before {
+    border-bottom-left-radius: 40px;
+    background-size: 80% auto;
+    background-position: right bottom;
+  }
+
+  .hero-text-row {
+    width: 100%;
+    gap: 16px;
+  }
+
   .hero-title {
-    font-size: 38px;
+    font-size: 34px;
+    letter-spacing: -0.5px;
   }
-  
+
+  .hero-title span:last-child {
+    margin-left: 0;
+  }
+
   .hero-name {
-    font-size: 20px;
+    font-size: 18px;
   }
-  
+
   .project-title {
     font-size: 24px;
   }
-  
-  .creation-card {
-    height: 400px;
-  }
-}
 
   .creation-card {
     height: 400px;
+  }
+
+  .about-title,
+  .work-header h2,
+  .life-title,
+  .creations-title {
+    font-size: 36px;
   }
 }

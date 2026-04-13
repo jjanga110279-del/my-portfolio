@@ -218,13 +218,15 @@ body {
 
 .hero-title {
   font-family: var(--font-bricolage);
-  font-size: 74px; /* Slightly increased for Outfit's proportions */
-  font-weight: 800; /* Extra Bold */
-  color: var(--color-firefly);
-  letter-spacing: -2px; /* Still tight, but breathable compared to -3.0 */
+  font-size: 74px;
+  font-weight: 800;
+  color: var(--color-firefly) !important; /* 색상 강제 지정 */
+  letter-spacing: -2px;
   display: flex;
   flex-direction: column;
-  gap: 8px; /* Slightly reduced gap */
+  gap: 8px;
+  opacity: 1 !important; /* 투명도 강제 지정 */
+  visibility: visible !important;
 }
 
 .hero-title span {
@@ -262,6 +264,10 @@ body {
   white-space: nowrap;
   color: var(--color-ferra);
   font-size: 16.7px;
+}
+
+.mobile-only-br {
+  display: none; /* 기본적으로 숨김 */
 }
 
 .hero-motto .hero-motto-en {
@@ -584,6 +590,22 @@ body {
   background-color: var(--color-pearl-bush);
 }
 
+.c { background-color: var(--color-firefly); }
+.c-0 { background-color: var(--color-firefly); }
+.c-1 { background-color: var(--color-pearl-bush); }
+.c-2 { background-color: var(--color-ferra); }
+.c-3 { background-color: var(--color-indian-khaki); }
+.c-4 { background-color: var(--color-pearl-bush); }
+.c-5 { background-color: var(--color-zinc-600); }
+.c-6 { background-color: var(--color-muted-green); }
+.c-7 { background-color: var(--color-pearl-bush); }
+
+.c-2 .creation-img,
+.c-3 .creation-img,
+.c-5 .creation-img {
+  transform: rotate(0deg);
+}
+
 /* Life */
 .life-section {
   padding: 96px 64px;
@@ -794,233 +816,144 @@ body {
 
 /* Responsive Design */
 
-/* ── 1200px: 좌우 여백 축소 ── */
 @media (max-width: 1200px) {
-  .nav-container,
-  .hero-section,
-  .about-section,
-  .work-section,
-  .creations-section,
-  .life-section,
-  .footer-section {
-    padding-left: 40px;
-    padding-right: 40px;
+  .nav-container, .hero-section, .about-section, .work-section, .creations-section, .life-section, .footer-section {
+    padding-left: 40px; padding-right: 40px;
   }
 }
 
-/* ── 1024px: 타이틀 축소, hero 텍스트 폭 조정 ── */
 @media (max-width: 1024px) {
-  .hero-title {
-    font-size: 58px;
-  }
-
-  .hero-title span:last-child {
-    margin-left: 60px;
-  }
-
-  .hero-text-row {
-    width: 58vw;
-    gap: 36px;
-  }
-
-  .about-info-grid {
-    gap: 40px;
-  }
-
-  .creations-container {
-    flex-direction: column;
-    gap: 40px;
-  }
-
-  .creations-title {
-    position: static;
-    font-size: 60px;
-    line-height: 1.2;
-  }
+  .hero-title { font-size: 58px; }
+  .hero-text-row { width: 58vw; }
+  .creations-container { flex-direction: column; }
 }
 
-/* ── 900px: iPad 가로 / 소형 태블릿 ── */
-@media (max-width: 900px) {
-  .hero-title {
-    font-size: 50px;
-  }
-
-  .hero-title span:last-child {
-    margin-left: 44px;
-  }
-
-  .hero-text-row {
-    width: 62vw;
-    gap: 28px;
-  }
-
-  .hero-section::before {
-    background-size: auto 95%;
-  }
-}
-
-/* ── 768px: iPad 세로 ── */
 @media (max-width: 768px) {
-  /* Nav */
-  .nav-container {
-    padding: 0 24px;
-    height: 64px;
+  /* 스크롤 전에는 숨김 (데스크톱 로직과 통일) */
+  .nav-avatar {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-20px);
+    transition: all 0.4s ease;
   }
 
-  .nav-links {
+  /* 스크롤 시에만 표시 */
+  .is-scrolled .nav-avatar {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateX(0) !important;
+  }
+
+  .hero-section { 
+    padding: 100px 24px 0; 
+    min-height: 100vh; 
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  /* 사진: 선명하게, 상반신 고정 */
+  .hero-section::before { 
+    position: absolute;
+    top: 100px;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-size: auto 80%; /* 상반신 위주로 크게 표시 */
+    background-position: right top; 
+    opacity: 1 !important; /* 선명함 복구 */
+    z-index: 0;
+  }
+
+  .hero-content { 
+    width: 100%;
+    z-index: 2;
+    position: relative;
+  }
+
+  .hero-text-row { 
+    width: 100%;
+    align-items: flex-start;
+    text-align: left;
     gap: 20px;
   }
 
-  /* Hero: 좌우 레이아웃 유지 (스택하지 않음) */
-  .hero-section {
-    padding: 90px 28px 56px;
-    border-bottom-left-radius: 60px;
+  /* 글자: 그림자 제거, 원본 색상 복구, 무조건 표시 */
+  .hero-title { 
+    font-size: 40px; 
+    line-height: 1.2;
+    color: var(--color-firefly) !important;
+    text-shadow: none !important; 
+    opacity: 1 !important;
+    visibility: visible !important;
   }
 
-  .hero-section::before {
-    border-bottom-left-radius: 60px;
-    background-size: auto 90%;
-    background-position: right bottom;
+  .hero-title span {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block;
   }
 
-  .hero-text-row {
-    width: 64vw;
-    gap: 20px;
+  .hero-title span:last-child { 
+    margin-left: 20px; 
   }
 
-  .hero-title {
-    font-size: 44px;
-    letter-spacing: -1px;
+  .hero-motto-ko { 
+    font-size: 15px;
+    line-height: 1.6; /* 줄 간격 약간 상향 */
+    color: var(--color-ferra) !important;
+    background-color: transparent !important;
+    text-shadow: none !important;
+    white-space: normal;
+    word-break: keep-all;
+    display: block;
   }
 
-  .hero-title span:last-child {
-    margin-left: 28px;
+  .mobile-only-br {
+    display: block; /* 모바일에서 강제 줄바꿈 활성화 */
   }
 
-  .hero-role {
-    font-size: 14px;
+  .hero-motto {
+    max-width: 90%; /* 너비를 약간 더 확보 */
   }
 
-  .hero-name {
-    font-size: 20px;
-  }
-
-  .hero-motto-ko,
   .hero-motto .hero-motto-en {
     font-size: 13px;
+    color: var(--color-ferra) !important;
+    background-color: transparent !important;
+    margin-top: 10px;
+    letter-spacing: -0.1px; /* 자간을 거의 정상에 가깝게 복구 */
+    word-spacing: 0; /* 단어 간격 복구 */
+    line-height: 1.4;
   }
 
-  /* 나머지 섹션 */
-  .about-section,
-  .work-section,
-  .life-section,
-  .footer-section {
-    padding: 60px 24px;
+  .hero-role, .hero-name {
+    color: var(--color-ferra) !important;
   }
 
-  .about-bg,
-  .work-section::before,
-  .life-section::before {
-    border-radius: 60px !important;
-  }
-
-  .about-title,
-  .work-header h2,
-  .life-title,
-  .creations-title {
-    font-size: 48px;
-    margin-bottom: 40px;
-    line-height: 1.2;
-  }
-
-  .about-info-grid {
-    flex-direction: column;
-    gap: 40px;
-  }
-
-  .projects-grid {
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
-
-  .footer-links-grid {
-    flex-direction: column;
-    gap: 40px;
-  }
-
-  .footer-bottom {
-    flex-direction: column;
-    gap: 16px;
-    text-align: center;
-  }
-}
-
-/* ── 560px: 소형 폰 가로 / 큰 폰 ── */
-@media (max-width: 560px) {
-  .hero-title {
-    font-size: 36px;
-  }
-
-  .hero-title span:last-child {
-    margin-left: 16px;
-  }
-
-  .hero-text-row {
-    width: 68vw;
-    gap: 16px;
-  }
-
-  .hero-section::before {
-    background-size: auto 80%;
-    background-position: right bottom;
-  }
-}
-
-/* ── 480px: 일반 스마트폰 ── */
-@media (max-width: 480px) {
-  /* Hero: 세로 스택으로 전환 */
-  .hero-section {
-    padding: 88px 20px 280px; /* 하단 패딩으로 배경 이미지 공간 확보 */
-    border-bottom-left-radius: 40px;
-    min-height: auto;
-  }
-
-  .hero-section::before {
-    border-bottom-left-radius: 40px;
-    background-size: 80% auto;
-    background-position: right bottom;
-  }
-
-  .hero-text-row {
-    width: 100%;
-    gap: 16px;
-  }
-
-  .hero-title {
-    font-size: 34px;
-    letter-spacing: -0.5px;
-  }
-
-  .hero-title span:last-child {
-    margin-left: 0;
-  }
-
-  .hero-name {
-    font-size: 18px;
-  }
-
-  .project-title {
-    font-size: 24px;
+  .creations-title { 
+    position: static;
+    font-size: 52px; /* 44px에서 52px로 상향하여 시각적 무게감 확보 */
+    line-height: 1.1;
+    margin-bottom: 50px;
+    color: var(--color-firefly);
+    font-weight: 800; /* 두께감 강화 */
   }
 
   .creation-card {
-    height: 400px;
+    position: sticky; /* 스택 효과 복구 */
+    top: 100px;
+    height: 450px;
+    margin-bottom: 20px;
   }
 
-  .about-title,
-  .work-header h2,
-  .life-title,
-  .creations-title {
-    font-size: 36px;
-  }
+  .about-info-grid { flex-direction: column; gap: 40px; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .footer-links-grid { flex-direction: column; gap: 40px; }
+}
+
+@media (max-width: 480px) {
+  .hero-title { font-size: 34px; }
+  .hero-name { font-size: 18px; }
 }

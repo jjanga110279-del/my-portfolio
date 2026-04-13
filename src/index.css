@@ -829,6 +829,39 @@ body {
 }
 
 @media (max-width: 768px) {
+  .nav-container {
+    padding: 0 15px; /* 여백 더 축소 */
+  }
+
+  /* 스크롤 시 나타나는 아바타와 이름 최적화 */
+  .nav-avatar img {
+    width: 45px; /* 80px에서 45px로 대폭 축소 */
+    height: 34px;
+    gap: 8px;
+  }
+
+  .nav-avatar span {
+    font-size: 13px; /* 이름 크기 축소 */
+    white-space: nowrap;
+  }
+
+  .nav-links {
+    gap: 15px; /* 기본 간격 더 축소 */
+  }
+
+  .nav-links-wrapper.is-scrolled .nav-links {
+    gap: 10px; /* 스크롤 시 메뉴 간 간격 최소화 */
+  }
+
+  .nav-link {
+    font-size: 13px; /* 메뉴 글자 크기 축소 */
+  }
+
+  .nav-resume-btn {
+    padding: 6px 12px; /* 버튼 크기 더 축소 */
+    font-size: 12px;
+  }
+
   /* 스크롤 전에는 숨김 (데스크톱 로직과 통일) */
   .nav-avatar {
     opacity: 0;

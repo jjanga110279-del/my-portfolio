@@ -8,7 +8,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(SplitText, ScrollTrigger, useGSAP);
 
-import { avatar, projectA, projectB, projectDmart, projectC, projectD, life1, life2, life3, life4, life5, life6, life7, life8, card, card1, card2, card3, card4, card5, card6, card7 } from "./assets/images";
+import { avatar, projectA, projectB, projectDmart, projectC, projectD, life1, life2, life3, life4, life5, life6, life7, life8, card, card1, card2, card3, card4, card5, card6, card7, card8, card9, work1, work2, work3, work4, work5, work6, work7, work8, work9, work10 } from "./assets/images";
 
 const AnimatedHeroTitle = () => {
   const containerRef = useRef(null);
@@ -141,12 +141,14 @@ function App() {
                     <span className="hero-name">junghwa.HWANG</span>
                     <div className="hero-motto">
                       <span className="hero-motto-ko">
-                        시간의 매듭으로 신뢰를 짓고,<br className="mobile-only-br" />
-                        주인의식의 색으로 내일을 디자인합니다.
+                        차곡차곡 쌓인 시간으로 신뢰를 짓고,<br className="mobile-only-br" />
+                        온전한 책임감으로 내일을 빚어냅니다.<br />
+                        깨어있는 감각으로 늘 현장과 호흡하겠습니다.
                       </span>
                       <span className="hero-motto-en">
-                        We build trust through the knots of time,<br />
-                        and design tomorrow with the colors of ownership.
+                        We build trust through the steady accumulation of time<br />
+                        and shape tomorrow with unwavering responsibility.<br />
+                        We will always stay attuned to the field with keen awareness.
                       </span>
                     </div>
                   </div>
@@ -222,14 +224,28 @@ function App() {
           </div>
         </section>
 
-        {/* Creations Section */}
+        {/* Creations Section: Designer's Taste */}
         <section className="creations-section">
           <div className="creations-container">
-            <h2 className="creations-title">Fashion<br />Schematization</h2>
+            <h2 className="creations-title">Design<br />Sketch</h2>
             <div className="creations-list">
-              {[card, card1, card2, card3, card4, card5, card6, card7].map((img, i) => (
+              {[card, card1, card2, card3, card4, card5, card6, card7, card8, card9].map((img, i) => (
                 <div key={i} className={`creation-card c-${i}`}>
                   <img src={img} alt={`Creation ${i}`} className="creation-img" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Creations Section: Real Work Log */}
+        <section className="creations-section work-log-section">
+          <div className="creations-container">
+            <h2 className="creations-title">Real<br />Work Log</h2>
+            <div className="creations-list">
+              {[work1, work2, work3, work4, work5, work6, work7, work8, work9, work10].map((img, i) => (
+                <div key={i} className={`creation-card w-${i}`}>
+                  <img src={img} alt={`Work ${i}`} className="creation-img" />
                 </div>
               ))}
             </div>

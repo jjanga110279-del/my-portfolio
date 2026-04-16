@@ -599,6 +599,50 @@ body {
 .c-5 { background-color: var(--color-zinc-600); }
 .c-6 { background-color: var(--color-muted-green); }
 .c-7 { background-color: var(--color-pearl-bush); }
+.c-8 { background-color: var(--color-ferra); }
+.c-9 { background-color: var(--color-indian-khaki); }
+
+/* Work Log Section Background Colors */
+.w-0 { background-color: var(--color-firefly); }
+.w-1 { background-color: var(--color-pearl-bush); }
+.w-2 { background-color: var(--color-ferra); }
+.w-3 { background-color: var(--color-indian-khaki); }
+.w-4 { background-color: var(--color-pearl-bush); }
+.w-5 { background-color: var(--color-zinc-600); }
+.w-6 { background-color: var(--color-muted-green); }
+.w-7 { background-color: var(--color-pearl-bush); }
+.w-8 { background-color: var(--color-ferra); }
+.w-9 { background-color: var(--color-indian-khaki); }
+
+/* Work Log Section Image Optimization */
+.work-log-section .creation-card {
+  padding: 16px; /* 여백을 조금 줄여서 이미지를 약간 더 키움 */
+}
+
+.work-log-section .creation-img {
+  max-width: 98%; /* 박스 안에서 조금 더 꽉 차게 */
+  max-height: 95%; 
+  width: auto;
+  height: auto;
+  object-fit: contain; 
+  border-radius: 8px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+/* 짝수/홀수 카드를 번갈아 가며 기울기 적용 */
+.work-log-section .creation-card:nth-child(odd) .creation-img {
+  transform: rotate(-3deg);
+}
+
+.work-log-section .creation-card:nth-child(even) .creation-img {
+  transform: rotate(3deg);
+}
+
+/* 호버 시 기울기 초기화로 가독성 확보 */
+.work-log-section .creation-card:hover .creation-img {
+  transform: rotate(0deg) scale(1.02);
+}
 
 .c-2 .creation-img,
 .c-3 .creation-img,

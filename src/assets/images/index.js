@@ -20,6 +20,18 @@ import card4 from './card4.png';
 import card5 from './card5.png';
 import card6 from './card6.png';
 import card7 from './card7.png';
+import card8 from './card8.jpg';
+import card9 from './card9.jpg';
+import work1 from './work1.jpg';
+import work2 from './work2.jpg';
+import work3 from './work3.jpg';
+import work4 from './work4.jpg';
+import work5 from './work5.jpg';
+import work6 from './work6.jpg';
+import work7 from './work7.jpg';
+import work8 from './work8.jpg';
+import work9 from './work9.jpg';
+import work10 from './work10.jpg';
 
 export {
   avatar,
@@ -43,5 +55,17 @@ export {
   card4,
   card5,
   card6,
-  card7
+  card7,
+  card8,
+  card9,
+  work1,
+  work2,
+  work3,
+  work4,
+  work5,
+  work6,
+  work7,
+  work8,
+  work9,
+  work10
 };

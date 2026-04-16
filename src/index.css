@@ -992,7 +992,9 @@ body {
   }
 
   .hero-motto {
-    max-width: 90%; /* 너비를 약간 더 확보 */
+    max-width: 70%; /* 오른쪽 이미지와 겹치지 않도록 너비 제한 */
+    position: relative;
+    z-index: 5;
   }
 
   .hero-motto .hero-motto-en {
@@ -1000,9 +1002,9 @@ body {
     color: var(--color-ferra) !important;
     background-color: transparent !important;
     margin-top: 10px;
-    letter-spacing: -0.1px; /* 자간을 거의 정상에 가깝게 복구 */
-    word-spacing: 0; /* 단어 간격 복구 */
+    letter-spacing: -0.2px;
     line-height: 1.4;
+    word-break: keep-all; /* 단어 단위 줄바꿈으로 가독성 확보 */
   }
 
   .hero-role, .hero-name {

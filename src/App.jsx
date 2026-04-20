@@ -71,7 +71,15 @@ function App() {
   const [scrolled, setScrolled] = React.useState(false);
   const form = useRef();
 
-  const sendEmail = (e) => {
+  // EmailJS 초기화 (공용 키가 있는 경우)
+  React.useEffect(() => {
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY?.trim();
+    if (publicKey) {
+      emailjs.init(publicKey);
+    }
+  }, []);
+
+  const sendEmail = async (e) => {
     e.preventDefault();
 
     const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID?.trim();
@@ -83,16 +91,16 @@ function App() {
       return;
     }
 
-    emailjs.init(publicKey);
-    emailjs.sendForm(serviceId, templateId, form.current, publicKey).then(
-      (result) => {
+    try {
+      const result = await emailjs.sendForm(serviceId, templateId, form.current, publicKey);
+      if (result.status === 200) {
         alert("이메일이 성공적으로 전송되었습니다!");
         e.target.reset();
-      },
-      (error) => {
-        alert("전송 오류가 발생했습니다.");
-      },
-    );
+      }
+    } catch (error) {
+      console.error("Email 전송 에러:", error);
+      alert("전송 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.");
+    }
   };
 
   React.useEffect(() => {
@@ -203,7 +211,7 @@ function App() {
             <a href="https://pepi-a.vercel.app/" target="_blank" rel="noopener noreferrer" className="project-card">
               <div className="project-image"><img src={projectB} alt="Project-B" /></div>
               <div className="project-info">
-                <span className="project-category">React,Python 쇼핑몰 디자인</span>
+                <span className="project-category">React(Tailwind) 쇼핑몰 디자인</span>
                 <h3 className="project-title">Project-B</h3>
               </div>
             </a>

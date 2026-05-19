@@ -261,9 +261,10 @@ body {
 
 .hero-motto-ko {
   display: block;
-  white-space: nowrap;
+  white-space: normal;
   color: var(--color-ferra);
   font-size: 16.7px;
+  line-height: 1.8;
 }
 
 .mobile-only-br {
@@ -504,11 +505,33 @@ body {
   font-family: var(--font-bricolage);
   font-size: 72px;
   color: var(--color-firefly);
-  line-height: 86.4px;
+  line-height: 1.1; /* 한 줄로 나오도록 줄 높이 조절 */
   position: sticky;
   top: 100px;
   height: fit-content;
   flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.creations-subtitle {
+  font-size: 30px; /* 요청하신 대로 30px로 변경 */
+  color: var(--color-ferra);
+  font-family: var(--font-pretendard);
+  font-weight: 600; /* 살짝 두껍게 설정 */
+  margin-top: 12px;
+  letter-spacing: -0.5px;
+}
+
+.creations-desc {
+  font-size: 18px;
+  color: var(--color-zinc-600);
+  font-family: var(--font-pretendard);
+  line-height: 1.8; /* 줄 간격을 넉넉하게 설정 */
+  margin-top: 24px;
+  font-weight: 400;
+  text-align: left;
+  word-break: keep-all; /* 단어 단위 줄바꿈 */
 }
 
 .creations-list {

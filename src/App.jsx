@@ -149,14 +149,10 @@ function App() {
                     <span className="hero-name">junghwa.HWANG</span>
                     <div className="hero-motto">
                       <span className="hero-motto-ko">
-                        차곡차곡 쌓인 시간으로 신뢰를 짓고,<br className="mobile-only-br" />
-                        온전한 책임감으로 내일을 빚어냅니다.<br />
-                        깨어있는 감각으로 늘 현장과 호흡하겠습니다.
-                      </span>
-                      <span className="hero-motto-en">
-                        We build trust through the steady accumulation of time<br />
-                        and shape tomorrow with unwavering responsibility.<br />
-                        We will always stay attuned to the field with keen awareness.
+                        18년이 넘는 시간 동안 패션 현장의 한가운데서<br />
+                        직접 발로 뛰며 옷의 시작과 끝을 함께해 왔습니다.<br />
+                        몸으로 익힌 주인의식과 노련한 현장 해결 능력으로,<br />
+                        귀사의 가장 단단하고 든든한 조력자가 되겠습니다.
                       </span>
                     </div>
                   </div>
@@ -196,6 +192,47 @@ function App() {
         </section>
 
         {/* Work Section */}
+        {/* Creations Section: Designer's Taste */}
+        <section className="creations-section">
+          <div className="creations-container">
+            <h2 className="creations-title">
+              Design Sketch
+              <span className="creations-subtitle">새로운 도구와 끊임없는 도전</span>
+              <p className="creations-desc">
+                오랜 경력에 안주하지 않고, 실무에 필요한 '프로크리에이트'와 '일러스트레이터'를 익혀 평소 좋아하는 스타일을 도식화로 그려본 연습 기록입니다. 현장에서 오차나 문제가 생기지 않도록 정확하고 꼼꼼하게 완성해 내며, 나이와 직급을 넘어 늘 함께하는 동료들과 열린 마음으로 소통하고 발전하고자 합니다.
+              </p>
+            </h2>
+            <div className="creations-list">
+              {[card, card1, card2, card3, card4, card5, card6, card7, card8, card9].map((img, i) => (
+                <div key={i} className={`creation-card c-${i}`}>
+                  <img src={img} alt={`Creation ${i}`} className="creation-img" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Creations Section: Real Work Log */}
+        <section className="creations-section work-log-section">
+          <div className="creations-container">
+            <h2 className="creations-title">
+              Real Work Log
+              <span className="creations-subtitle">리오더와 생산 최적화 실무</span>
+              <p className="creations-desc">
+                원단과 공장이 바뀌어도 안정적인 퀄리티와 원활한 리오더를 위해 재직 시절 작성한 실제 작업지시서입니다.<br />
+                단순 지시서 작성을 넘어 정확한 '단가 관리'와 '요척 계산' 데이터를 직접 핸들링하며, 생산 원가 절감과 공정 최적화를 주도하는 실무형 디렉터로서의 역량을 담았습니다.
+              </p>
+            </h2>
+            <div className="creations-list">
+              {[work1, work2, work3, work4, work5, work6, work7, work8, work9, work10].map((img, i) => (
+                <div key={i} className={`creation-card w-${i}`}>
+                  <img src={img} alt={`Work ${i}`} className="creation-img" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <section id="work" className="work-section">
           <div className="work-header">
             <h2>A scene from my<br />project the <span>result</span></h2>
@@ -204,14 +241,14 @@ function App() {
             <a href="https://jjanga110279-del.github.io/project-A/" target="_blank" rel="noopener noreferrer" className="project-card">
               <div className="project-image"><img src={projectA} alt="Project-A" /></div>
               <div className="project-info">
-                <span className="project-category">Html,Css 홈화면 디자인</span>
+                <span className="project-category">웹 퍼블리싱 구조를 이해하고 구현한 HTML·CSS 기반의 여성복 쇼핑몰 홈화면 UI 디자인</span>
                 <h3 className="project-title">Project-A</h3>
               </div>
             </a>
             <a href="https://pepi-a.vercel.app/" target="_blank" rel="noopener noreferrer" className="project-card">
               <div className="project-image"><img src={projectB} alt="Project-B" /></div>
               <div className="project-info">
-                <span className="project-category">React(Tailwind) 쇼핑몰 디자인</span>
+                <span className="project-category">React와 Tailwind를 활용하여 이커머스 전개 프로세스를 직접 구축한 여성복 쇼핑몰 웹 기획</span>
                 <h3 className="project-title">Project-B</h3>
               </div>
             </a>
@@ -229,34 +266,6 @@ function App() {
                 <h3 className="project-title">Team Project</h3>
               </div>
             </a>
-          </div>
-        </section>
-
-        {/* Creations Section: Designer's Taste */}
-        <section className="creations-section">
-          <div className="creations-container">
-            <h2 className="creations-title">Design<br />Sketch</h2>
-            <div className="creations-list">
-              {[card, card1, card2, card3, card4, card5, card6, card7, card8, card9].map((img, i) => (
-                <div key={i} className={`creation-card c-${i}`}>
-                  <img src={img} alt={`Creation ${i}`} className="creation-img" />
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Creations Section: Real Work Log */}
-        <section className="creations-section work-log-section">
-          <div className="creations-container">
-            <h2 className="creations-title">Real<br />Work Log</h2>
-            <div className="creations-list">
-              {[work1, work2, work3, work4, work5, work6, work7, work8, work9, work10].map((img, i) => (
-                <div key={i} className={`creation-card w-${i}`}>
-                  <img src={img} alt={`Work ${i}`} className="creation-img" />
-                </div>
-              ))}
-            </div>
           </div>
         </section>
 

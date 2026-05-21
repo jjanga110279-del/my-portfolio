@@ -71,7 +71,7 @@ function App() {
   const [scrolled, setScrolled] = React.useState(false);
   const form = useRef();
 
-  // EmailJS 초기화 (공용 키가 있는 경우)
+  // EmailJS 초기화
   React.useEffect(() => {
     const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY?.trim();
     if (publicKey) {

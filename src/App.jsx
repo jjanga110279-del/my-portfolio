@@ -87,7 +87,12 @@ function App() {
     const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY?.trim();
 
     if (!serviceId || !templateId || !publicKey) {
-      alert("환경 변수 로드 실패. .env 파일을 확인해 주세요.");
+      const missing = [];
+      if (!serviceId) missing.push("SERVICE_ID");
+      if (!templateId) missing.push("TEMPLATE_ID");
+      if (!publicKey) missing.push("PUBLIC_KEY");
+      
+      alert(`환경 변수 누락: ${missing.join(", ")}. GitHub Secrets 설정을 확인해 주세요.`);
       return;
     }
 

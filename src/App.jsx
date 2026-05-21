@@ -99,7 +99,7 @@ function App() {
     try {
       const result = await emailjs.sendForm(serviceId, templateId, form.current, publicKey);
       if (result.status === 200) {
-        alert("이메일이 성공적으로 전송되었습니다!");
+        alert("이메일이 전송되었습니다. 확인 후 연락드리겠습니다!");
         e.target.reset();
       }
     } catch (error) {
